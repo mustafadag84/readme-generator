@@ -9,6 +9,31 @@ inquirer.prompt([
         name: "title"
     },
     {
+        type:"input",
+        message: "Explain how to run your project.",
+        name:"description"
+    },
+    {
+        type:"input",
+        message: "What is the project's Table of Contents?",
+        name:"description"
+    },
+    {
+        type:"input",
+        message: "What is the installation process?",
+        name: "install"
+    },
+    {
+        type:"input", 
+        message: "What is the usage of this project?",
+        name: "usage"
+    },
+    {
+        type:"input",
+        message: "Add contributors to this project:",
+        name: "contact"
+    },
+    {
         type: 'input',
         message: "What is your github username?",
         name: 'user',
@@ -52,6 +77,17 @@ inquirer.prompt([
     // });
     let data2Write = "";
     data2Write += "# readme-generator\n";
+    data2Write += "\n";
+    data2Write += "## Description:\n";
+    data2Write += "\n";
+    data2Write += "## Table of Contents:\n";
+    data2Write += "\n";
+    data2Write += "## Installation:\n";
+    data2Write += "\n";
+    data2Write += "## Usage:\n";
+    data2Write += "\n";
+    data2Write += "## Contact:\n";
+    data2Write += "\n";
     data2Write += "# Password File\n";
     data2Write += "\n";
     data2Write += "## User\n"; // heading #2
