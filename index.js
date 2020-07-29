@@ -4,6 +4,11 @@ const fs = require('fs');
 // array of questions for user
 inquirer.prompt([
     {
+        type: "input",
+        message: "What is the project title?",
+        name: "title"
+    },
+    {
         type: 'input',
         message: "What is your github username?",
         name: 'user',
@@ -46,6 +51,7 @@ inquirer.prompt([
     //     return console.log("We finished writing the file.");
     // });
     let data2Write = "";
+    data2Write += "# readme-generator\n";
     data2Write += "# Password File\n";
     data2Write += "\n";
     data2Write += "## User\n"; // heading #2
