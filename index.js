@@ -18,11 +18,17 @@ inquirer.prompt([
     //     message: "What is the project's Table of Contents?",
     //     name: "contents"
     // },
+    // {
+    //     type: 'checkbox',
+    //     message: 'what is the Table of contents',
+    //     name: 'Table of Contents',
+    //     choices: ['Installation', 'Usage', 'Contact', 'Tests', 'License', 'Questions']
+    // },
     {
         type: 'checkbox',
-        message: 'what is the Table of contents',
-        name: 'Table of Contents',
-        choices: ['Installation', 'Usage', 'Contact', 'Tests', 'License', 'Questions']
+        message: 'what technologies do you know?',
+        name: 'tech',
+        choices: ['HTML', 'CSS', 'JS', 'Node', 'SQL', 'React']
     },
     
     {
@@ -105,7 +111,8 @@ inquirer.prompt([
 
     data2Write += "## Table of Contents:\n";
     data2Write += "\n";
-    data2Write += `${response.contents}\n`; // data under heading
+    data2Write += `${response.tech.map(techname => `- ${techname}`)}\n`; // data under heading
+    // ${response.tech.map(techname => `- ${techname}`).join('\n')}`;
 
     data2Write += "## Installation:\n";
     data2Write += "\n";
