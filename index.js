@@ -37,22 +37,14 @@ inquirer.prompt([
     },
     {
         type: "input",
-        message: "Add contributors to this project:",
-        name: "contact"
-
-    },
-    {
-        type: 'input',
-        message: 'What is your email?',
-        name: 'email',
-        validate: emailInput => {
-            return (/^.+@.+\..+$/gi.test(emailInput) ? true : `That's not an email!`)
-        }
+        message: "How should users run the tests",
+        name: 'test'
     },
     {
         type: "input",
-        message: "How should users run the tests",
-        name: 'test'
+        message: "Add contributors to this project:",
+        name: "contact"
+
     },
     {
         type: 'input',
@@ -72,21 +64,31 @@ inquirer.prompt([
         }
     },
     {
-        type: 'password',
-        message: 'Please enter your password',
-        name: 'password',
-        validate: password => {
-            if (password.length < 8) {
-                return "Password is too short."
-            }
-            else if (password.length > 32) {
-                return "Password is too long."
-            }
-            else {
-                return true;
-            }
+        type: 'input',
+        message: 'What is your email?',
+        name: 'email',
+        validate: emailInput => {
+            return (/^.+@.+\..+$/gi.test(emailInput) ? true : `That's not an email!`)
         }
-    }
+    },
+    
+   
+    // {
+    //     type: 'password',
+    //     message: 'Please enter your password',
+    //     name: 'password',
+    //     validate: password => {
+    //         if (password.length < 8) {
+    //             return "Password is too short."
+    //         }
+    //         else if (password.length > 32) {
+    //             return "Password is too long."
+    //         }
+    //         else {
+    //             return true;
+    //         }
+    //     }
+    // }
 ]).then(response => {
     console.log(response)
 
@@ -102,44 +104,57 @@ inquirer.prompt([
     data2Write += "## Description:\n";
     data2Write += "\n";
     data2Write += `${response.description}\n`; // data under heading
+    data2Write += "\n";
 
     data2Write += "## Table of Contents:\n";
     data2Write += "\n";
     data2Write += `${response.content.map(contentname => `- ${contentname}`).join('\n')}`; // data under heading
+    data2Write += "\n";
     // ${response.tech.map(techname => `- ${techname}`).join('\n')}`;
 
     data2Write += "## Installation:\n";
     data2Write += "\n";
     data2Write += `${response.install}\n`; // data under heading
+    data2Write += "\n";
 
     data2Write += "## Usage:\n";
     data2Write += "\n";
     data2Write += `${response.usage}\n`; // data under heading
-
-    data2Write += "# Contact:\n";
     data2Write += "\n";
-    data2Write += `${response.contact}\n`; // data under heading
-
-    data2Write += "## Email:\n";
-    data2Write += "\n";
-    data2Write += `${response.email}\n`; // data under heading
-
 
     data2Write += "## Tests:\n";
     data2Write += "\n";
     data2Write += `${response.test}\n`; // data under heading
+    data2Write += "\n";
 
-    data2Write += "# Password File\n";
+
+    data2Write += "# Contact:\n";
+    data2Write += "\n";
+    data2Write += `${response.contact}\n`; // data under heading
 
     data2Write += "\n";
     data2Write += "## User\n"; // heading #2
     data2Write += "\n";
     data2Write += `${response.user}\n`; // data under heading
 
+
+    data2Write += "## Email:\n";
     data2Write += "\n";
-    data2Write += "## Password\n";
+    data2Write += `${response.email}\n`; // data under heading
+
+
+    
+    // data2Write += "# Password File\n";
+
+    // data2Write += "\n";
+    // data2Write += "## User\n"; // heading #2
+    // data2Write += "\n";
+    // data2Write += `${response.user}\n`; // data under heading
+
     data2Write += "\n";
-    data2Write += `${response.password}\n`;
+    // data2Write += "## Password\n";
+    // data2Write += "\n";
+    // data2Write += `${response.password}\n`;
     data2Write += "\n";
     fs.writeFile('readme-out.md', data2Write, 'utf8', err => {
         if (err) return console.log(err);
