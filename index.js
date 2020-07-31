@@ -21,10 +21,10 @@ inquirer.prompt([
     {
         type: 'checkbox',
         message: 'what is the Table of contents',
-        name: 'contents',
+        name: 'Table of Contents',
         choices: ['Installation', 'Usage', 'Contact', 'Tests', 'License', 'Questions']
     },
-
+    
     {
         type: "input",
         message: "What is the installation process?",
@@ -40,6 +40,14 @@ inquirer.prompt([
         message: "Add contributors to this project:",
         name: "contact"
 
+    },
+    {
+        type: 'input',
+        message: 'What is your email?',
+        name: 'email',
+        validate: emailInput => {
+            return (/^.+@.+\..+$/gi.test(emailInput) ? true : `That's not an email!`)
+        }
     },
     {
         type: "input",
@@ -80,8 +88,6 @@ inquirer.prompt([
         }
     }
 ]).then(response => {
-    // console.log(response.user);
-    // console.log(response.august);
     console.log(response)
 
     // function to write README file
@@ -109,9 +115,14 @@ inquirer.prompt([
     data2Write += "\n";
     data2Write += `${response.usage}\n`; // data under heading
 
-    data2Write += "## Contact:\n";
+    data2Write += "# Contact:\n";
     data2Write += "\n";
     data2Write += `${response.contact}\n`; // data under heading
+
+    data2Write += "## Email:\n";
+    data2Write += "\n";
+    data2Write += `${response.email}\n`; // data under heading
+
 
     data2Write += "## Tests:\n";
     data2Write += "\n";
