@@ -13,11 +13,18 @@ inquirer.prompt([
         message: "Explain how to run your project.",
         name: "description"
     },
+    // {
+    //     type: "input",
+    //     message: "What is the project's Table of Contents?",
+    //     name: "contents"
+    // },
     {
-        type: "input",
-        message: "What is the project's Table of Contents?",
-        name: "contents"
+        type: 'checkbox',
+        message: 'what is the Table of contents',
+        name: 'contents',
+        choices: ['Installation', 'Usage', 'Contact', 'Tests', 'License', 'Questions']
     },
+
     {
         type: "input",
         message: "What is the installation process?",
