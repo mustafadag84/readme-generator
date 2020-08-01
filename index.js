@@ -6,42 +6,90 @@ inquirer.prompt([
     {
         type: "input",
         message: "What is the project title?",
-        name: "title"
+        name: "title",
+        validate: title => {
+            if (title.length < 2) {
+                return "Title is too short";
+            }
+            else {
+                return true;
+            }
+        }
     },
     {
         type: "input",
         message: "Explain how to run your project.",
-        name: "description"
+        name: "description",
+        validate: description => {
+            if (description.length < 10) {
+                return "Description is too short";
+            }
+            else {
+                return true;
+            }
+        }
     },
-    
+
     {
         type: 'checkbox',
         message: 'what is the Table of contents',
         name: 'content',
         choices: ['Installation', 'Usage', 'Contact', 'Tests', 'License', 'Questions']
     },
-    
+
     {
         type: "input",
         message: "What is the installation process?",
-        name: "install"
+        name: "install",
+        validate: install => {
+            if (install.length < 10) {
+                return "Description is too short";
+            }
+            else {
+                return true;
+            }
+        }
     },
 
     {
         type: "input",
         message: "What is the usage of this project?",
-        name: "usage"
+        name: "usage",
+        validate: usage => {
+            if (usage.length < 10) {
+                return "Description is too short";
+            }
+            else {
+                return true;
+            }
+        }
     },
 
     {
         type: "input",
         message: "How should users run the tests",
-        name: 'test'
+        name: 'test',
+        validate: test => {
+            if (test.length < 10) {
+                return "Test description is too short";
+            }
+            else {
+                return true;
+            }
+        }
     },
     {
         type: "input",
         message: "Add contributors to this project:",
-        name: "contact"
+        name: "contact",
+        validate: contact => {
+            if (contact.length > 0)
+                return true
+            else {
+                return false
+            }
+
+        }
 
     },
     {
@@ -49,16 +97,15 @@ inquirer.prompt([
         message: "Link to your profile picture:",
         name: "picture",
         validate: picture => {
-            if(picture.length > 0)
-            return true
-            else{
+            if (picture.length > 0)
+                return true
+            else {
                 return false
             }
-        
         }
 
     },
-    
+
     {
         type: 'input',
         message: "What is your github username?",
@@ -87,20 +134,36 @@ inquirer.prompt([
     {
         type: "input",
         message: "Add project's link:",
-        name: "link"
+        name: "link",
+        validate: link => {
+            if (link.length > 0)
+                return true
+            else {
+                return false
+            }
+
+        }
 
     },
     {
         type: "input",
         message: "What is your reponame?",
-        name: "reponame"
+        name: "reponame",
+        validate: repo => {
+            let alphaExp = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,39}$/i;
+            if (!repo.match(alphaExp)) {
+                return "Use alphanumeric characters or hyphens.No consecutive hyphens.No begin or end with a hyphen. Max length 40";
+            } else {
+                return true;
+            }
+        }
 
     },
-    
+
 ]).then(response => {
     console.log(response)
 
-    
+
     let data2Write = "";
     data2Write += `# ${response.title}\n`;
     data2Write += "\n";
@@ -114,7 +177,7 @@ inquirer.prompt([
     data2Write += "\n";
     data2Write += `${response.content.map(contentname => `- ${contentname}`).join('\n')}`; // data under heading
     data2Write += "\n";
-    
+
     data2Write += "## Installation:\n";
     data2Write += "\n";
     data2Write += `${response.install}\n`; // data under heading
