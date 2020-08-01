@@ -2,7 +2,7 @@
 
 ## Description:
 
-After the initial npm install, open terminal and run node index.js, answer all the promts. 
+After the initial npm install, open terminal and run node index.js, answer all the promts
 
 ## Table of Contents:
 
@@ -39,5 +39,5 @@ mustafa84dag@gmail.com
 
 # Link:
 
-https://github.com/mustafadag84/readme-generator
+https://github.com/mustafadag84/readme-generator/blob/master/readme-out.md
 
