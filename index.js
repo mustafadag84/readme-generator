@@ -26,11 +26,13 @@ inquirer.prompt([
         message: "What is the installation process?",
         name: "install"
     },
+
     {
         type: "input",
         message: "What is the usage of this project?",
         name: "usage"
     },
+
     {
         type: "input",
         message: "How should users run the tests",
@@ -40,6 +42,12 @@ inquirer.prompt([
         type: "input",
         message: "Add contributors to this project:",
         name: "contact"
+
+    },
+    {
+        type: "input",
+        message: "Link to your profile picture:",
+        name: "picture"
 
     },
     {
@@ -69,10 +77,11 @@ inquirer.prompt([
     },
     {
         type: "input",
-        message: "Add project's links:",
+        message: "Add project's link:",
         name: "link"
 
     },
+    
     
 ]).then(response => {
     console.log(response)
@@ -118,41 +127,27 @@ inquirer.prompt([
     data2Write += `${response.contact}\n`; // data under heading
     data2Write += "\n";
 
+    data2Write += "\n";
+    data2Write += `![](${response.picture})\n`; // data under heading
+
     data2Write += "## User\n"; // heading #2
     data2Write += "\n";
     data2Write += `${response.user}\n`; // data under heading
-
 
     data2Write += "## Email:\n";
     data2Write += "\n";
     data2Write += `${response.email}\n`; // data under heading
     data2Write += "\n";
 
-    data2Write += "# Links:\n";
+    data2Write += "# Link:\n";
     data2Write += "\n";
     data2Write += `${response.link}\n`; // data under heading
     data2Write += "\n";
 
-    fs.writeFile('READme.md', data2Write, 'utf8', err => {
+    fs.writeFile('readme-out.md', data2Write, 'utf8', err => {
         if (err) return console.log(err);
         return console.log("We finished writing the file succesfully.");
     });
 
 });
 
-// // array of questions for user
-// const questions = [
-
-// ];
-
-// // function to write README file
-// function writeToFile(fileName, data) {
-// }
-
-// // function to initialize program
-// function init() {
-
-// }
-
-// // function call to initialize program
-// init();
