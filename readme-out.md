@@ -39,5 +39,5 @@ mustafa84dag@gmail.com
 
 # Link:
 
-https://github.com/mustafadag84/readme-generator
+https://github.com/mustafadag84/readme-generator/blob/master/readme-out.md
 
