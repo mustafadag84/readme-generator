@@ -29,7 +29,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 Mustafa Dag
 
 
-![](https://tilomitra.com/wp-content/uploads/2014/08/avatar-cartoon.png)
+![](https://i2.wp.com/tilomitra.com/wp-content/uploads/2014/08/avatar-cartoon.png?fit=356%2C356&ssl=1)
 ## User
 
 mustafadag84
