@@ -47,15 +47,24 @@ inquirer.prompt([
     {
         type: "input",
         message: "Link to your profile picture:",
-        name: "picture"
+        name: "picture",
+        validate: picture => {
+            if(picture.length > 0)
+            return true
+            else{
+                return false
+            }
+        
+        }
 
     },
+    
     {
         type: 'input',
         message: "What is your github username?",
         name: 'user',
         validate: user => {
-            if (user.length < 10) {
+            if (user.length < 1) {
                 return "Username is too short.";
             }
             else if (user.toLowerCase() != user) {
@@ -81,16 +90,17 @@ inquirer.prompt([
         name: "link"
 
     },
-    
+    {
+        type: "input",
+        message: "What is your reponame?",
+        name: "reponame"
+
+    },
     
 ]).then(response => {
     console.log(response)
 
-    // function to write README file
-    // fs.writeFile('readme-out.md', JSON.stringify(response, null, 2), 'utf8', err => {
-    //     if(err) return console.log(err);
-    //     return console.log("We finished writing the file.");
-    // });
+    
     let data2Write = "";
     data2Write += `# ${response.title}\n`;
     data2Write += "\n";
@@ -105,7 +115,6 @@ inquirer.prompt([
     data2Write += `${response.content.map(contentname => `- ${contentname}`).join('\n')}`; // data under heading
     data2Write += "\n";
     
-
     data2Write += "## Installation:\n";
     data2Write += "\n";
     data2Write += `${response.install}\n`; // data under heading
@@ -120,7 +129,6 @@ inquirer.prompt([
     data2Write += "\n";
     data2Write += `${response.test}\n`; // data under heading
     data2Write += "\n";
-
 
     data2Write += "# Contact:\n";
     data2Write += "\n";
@@ -143,6 +151,8 @@ inquirer.prompt([
     data2Write += "\n";
     data2Write += `${response.link}\n`; // data under heading
     data2Write += "\n";
+
+    data2Write += `![GitHub](https://img.shields.io/github/license/${response.user}/${response.reponame})`
 
     fs.writeFile('readme-out.md', data2Write, 'utf8', err => {
         if (err) return console.log(err);
